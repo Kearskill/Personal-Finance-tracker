@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { SavingsGoal } from '../types';
 import { ICONS } from '../constants';
