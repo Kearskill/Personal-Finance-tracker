@@ -31,7 +31,17 @@ const IncomeExpenseChart: React.FC<IncomeExpenseChartProps> = ({ income, expense
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="name" />
           <YAxis tickFormatter={(value) => `$${value/1000}k`} />
-          <Tooltip formatter={(value: number) => value.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}/>
+          <Tooltip
+          formatter={(value: number | undefined) => {
+            if (value === undefined) return '$0';
+
+            return value.toLocaleString('en-US', {
+              style: 'currency',
+              currency: 'USD',
+            });
+            }}
+          />
+
           <Legend />
           <Bar dataKey="income" fill="#10B981" />
           <Bar dataKey="expense" fill="#EF4444" />

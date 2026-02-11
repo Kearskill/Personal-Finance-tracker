@@ -45,7 +45,17 @@ const CategoryBreakdownChart: React.FC<CategoryBreakdownChartProps> = ({ transac
               <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
             ))}
           </Pie>
-          <Tooltip formatter={(value: number) => value.toLocaleString('en-US', { style: 'currency', currency: 'USD' })} />
+          <Tooltip
+            formatter={(value: number | undefined) => {
+            if (value === undefined) return '$0';
+
+            return value.toLocaleString('en-US', {
+              style: 'currency',
+              currency: 'USD',
+            });
+            
+            }}
+          />
           <Legend />
         </PieChart>
       </ResponsiveContainer>
